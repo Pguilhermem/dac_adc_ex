@@ -58,21 +58,38 @@ extern "C"
 //
 //*****************************************************************************
 
+//*****************************************************************************
 //
-// SCIA -> SCI0 Pinmux
+// ADC Configurations
 //
+//*****************************************************************************
+#define ADC0_BASE ADCA_BASE
+#define ADC0_RESULT_BASE ADCARESULT_BASE
+#define ADC0_SOC0 ADC_SOC_NUMBER0
+#define ADC0_FORCE_SOC0 ADC_FORCE_SOC0
+#define ADC0_SAMPLE_WINDOW_SOC0 75
+#define ADC0_TRIGGER_SOURCE_SOC0 ADC_TRIGGER_CPU1_TINT0
+#define ADC0_CHANNEL_SOC0 ADC_CH_ADCIN0
+void ADC0_init();
+
+
+//*****************************************************************************
 //
-// SCIRXDA - GPIO Settings
+// CPUTIMER Configurations
 //
-#define GPIO_PIN_SCIRXDA 43
-#define SCI0_SCIRX_GPIO 43
-#define SCI0_SCIRX_PIN_CONFIG GPIO_43_SCIRXDA
+//*****************************************************************************
+#define myCPUTIMER0_BASE CPUTIMER0_BASE
+void myCPUTIMER0_init();
+#define myCPUTIMER1_BASE CPUTIMER1_BASE
+void myCPUTIMER1_init();
+
+//*****************************************************************************
 //
-// SCITXDA - GPIO Settings
+// DAC Configurations
 //
-#define GPIO_PIN_SCITXDA 42
-#define SCI0_SCITX_GPIO 42
-#define SCI0_SCITX_PIN_CONFIG GPIO_42_SCITXDA
+//*****************************************************************************
+#define DAC0_BASE DACA_BASE
+void DAC0_init();
 
 //*****************************************************************************
 //
@@ -80,25 +97,16 @@ extern "C"
 //
 //*****************************************************************************
 
-// Interrupt Settings for INT_SCI0_RX
+// Interrupt Settings for INT_ADC0_1
 // ISR need to be defined for the registered interrupts
-#define INT_SCI0_RX INT_SCIA_RX
-#define INT_SCI0_RX_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP9
-extern __interrupt void INT_SCI0_RX_ISR(void);
+#define INT_ADC0_1 INT_ADCA1
+#define INT_ADC0_1_INTERRUPT_ACK_GROUP INTERRUPT_ACK_GROUP1
+extern __interrupt void INT_ADC0_1_ISR(void);
 
-//*****************************************************************************
-//
-// SCI Configurations
-//
-//*****************************************************************************
-#define SCI0_BASE SCIA_BASE
-#define SCI0_BAUDRATE 115200
-#define SCI0_CONFIG_WLEN SCI_CONFIG_WLEN_8
-#define SCI0_CONFIG_STOP SCI_CONFIG_STOP_ONE
-#define SCI0_CONFIG_PAR SCI_CONFIG_PAR_NONE
-#define SCI0_FIFO_TX_LVL SCI_FIFO_TX0
-#define SCI0_FIFO_RX_LVL SCI_FIFO_RX1
-void SCI0_init();
+// Interrupt Settings for INT_myCPUTIMER1
+// ISR need to be defined for the registered interrupts
+#define INT_myCPUTIMER1 INT_TIMER1
+extern __interrupt void INT_myCPUTIMER1_ISR(void);
 
 //*****************************************************************************
 //
@@ -106,8 +114,10 @@ void SCI0_init();
 //
 //*****************************************************************************
 void	Board_init();
+void	ADC_init();
+void	CPUTIMER_init();
+void	DAC_init();
 void	INTERRUPT_init();
-void	SCI_init();
 void	PinMux_init();
 
 //*****************************************************************************
