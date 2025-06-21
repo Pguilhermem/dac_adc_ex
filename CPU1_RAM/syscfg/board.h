@@ -88,7 +88,7 @@ void myCPUTIMER1_init();
 // DAC Configurations
 //
 //*****************************************************************************
-#define DAC0_BASE DACA_BASE
+#define DAC0_BASE DACB_BASE
 void DAC0_init();
 
 //*****************************************************************************

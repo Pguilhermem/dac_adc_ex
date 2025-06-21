@@ -148,9 +148,9 @@ void CPUTIMER_init(){
 }
 
 void myCPUTIMER0_init(){
-	CPUTimer_setEmulationMode(myCPUTIMER0_BASE, CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT);
-	CPUTimer_setPreScaler(myCPUTIMER0_BASE, 1U);
-	CPUTimer_setPeriod(myCPUTIMER0_BASE, 1000U);
+	CPUTimer_setEmulationMode(myCPUTIMER0_BASE, CPUTIMER_EMULATIONMODE_RUNFREE);
+	CPUTimer_setPreScaler(myCPUTIMER0_BASE, 0U);
+	CPUTimer_setPeriod(myCPUTIMER0_BASE, 39999U);
 	CPUTimer_enableInterrupt(myCPUTIMER0_BASE);
 	CPUTimer_stopTimer(myCPUTIMER0_BASE);
 
@@ -160,7 +160,7 @@ void myCPUTIMER0_init(){
 void myCPUTIMER1_init(){
 	CPUTimer_setEmulationMode(myCPUTIMER1_BASE, CPUTIMER_EMULATIONMODE_RUNFREE);
 	CPUTimer_setPreScaler(myCPUTIMER1_BASE, 0U);
-	CPUTimer_setPeriod(myCPUTIMER1_BASE, 2000U);
+	CPUTimer_setPeriod(myCPUTIMER1_BASE, 19999U);
 	CPUTimer_enableInterrupt(myCPUTIMER1_BASE);
 	CPUTimer_stopTimer(myCPUTIMER1_BASE);
 
@@ -181,7 +181,7 @@ void DAC0_init(){
 	//
 	// Set DAC reference voltage.
 	//
-	DAC_setReferenceVoltage(DAC0_BASE, DAC_REF_VDAC);
+	DAC_setReferenceVoltage(DAC0_BASE, DAC_REF_ADC_VREFHI);
 	//
 	// Set DAC load mode.
 	//

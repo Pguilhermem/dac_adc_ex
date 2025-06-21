@@ -33,18 +33,20 @@ adc1.adcInt1.enableInterrupt = true;
 
 cputimer1.$name           = "myCPUTIMER0";
 cputimer1.startTimer      = true;
-cputimer1.timerPrescaler  = 1;
 cputimer1.enableInterrupt = true;
-cputimer1.timerPeriod     = 1000;
+cputimer1.emulationMode   = "CPUTIMER_EMULATIONMODE_RUNFREE";
+cputimer1.timerPeriod     = 39999;
 
 cputimer2.$name                    = "myCPUTIMER1";
 cputimer2.cputimerBase             = "CPUTIMER1_BASE";
-cputimer2.emulationMode            = "CPUTIMER_EMULATIONMODE_RUNFREE";
 cputimer2.enableInterrupt          = true;
 cputimer2.registerInterrupts       = true;
 cputimer2.startTimer               = true;
-cputimer2.timerPeriod              = 2000;
+cputimer2.emulationMode            = "CPUTIMER_EMULATIONMODE_RUNFREE";
+cputimer2.timerPeriod              = 19999;
 cputimer2.timerInt.enableInterrupt = true;
 
-dac1.$name        = "DAC0";
-dac1.enableOutput = true;
+dac1.$name            = "DAC0";
+dac1.enableOutput     = true;
+dac1.dacBase          = "DACB_BASE";
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
