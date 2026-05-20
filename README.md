@@ -16,8 +16,8 @@ Este projeto demonstra a síntese de uma forma de onda senoidal utilizando o Dig
 
 ## Requisitos de Software
 
-* **Code Composer Studio (CCS)** v10.x ou superior (IDE da Texas Instruments).
+* **Code Composer Studio (CCS)** v20.x ou superior (IDE da Texas Instruments).
 * **C2000Ware SDK** (Pacote de software da TI para microcontroladores C2000).
-* **Python 3.x** (para o script de geração do buffer DAC).
+* **Python 3.11+** (para o script de geração do buffer DAC).
 
 
