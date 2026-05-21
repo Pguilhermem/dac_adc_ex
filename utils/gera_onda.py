@@ -1,5 +1,9 @@
 import math
 import datetime
+import serial
+import struct
+import numpy as np
+
 
 def gerar_vetor_dac_parametrizado(frequencia_onda, amostras_por_ciclo, dac_bits, amplitude_normalizada):
     """
@@ -104,3 +108,37 @@ if __name__ == "__main__":
         print(f"\nErro de entrada: {e}. Por favor, digite valores numéricos válidos e verifique o range da amplitude.")
     except Exception as e:
         print(f"\nOcorreu um erro inesperado: {e}")
+
+    ser = serial.Serial('COM7',115200, timeout=2)
+
+    CMD_SEND_WAVEFORM = 1
+    CMD_GET_ADC = 2
+
+    vetor = np.array(vetor_dac,dtype=np.uint16)
+
+    # comando
+    ser.write(struct.pack('<B',CMD_SEND_WAVEFORM))
+
+    # vetor inteiro
+    for val in vetor:
+        ser.write(struct.pack('<H',val))
+
+
+    ser.write(struct.pack('<B',CMD_GET_ADC))
+
+
+
+    adc = []
+
+    for i in range(100):
+
+        data = ser.read(2)
+
+        val = struct.unpack('<H',data)[0]
+
+        adc.append(val)
+
+    fft = np.fft.fft(adc)
+
+    freq = np.fft.fftfreq(len(adc), d=Ts)
+    ser.close()
